@@ -1,0 +1,16 @@
+{
+  "name": "FundedProjectsMap",
+  "version": "1.0.0",
+  "description": "Visualizing Gov and Donor funded projects in KE",
+  "main": "js/app.js",
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "mapbox.js": "^2.2.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "testmap"
+  },
+  "author": "allan",
+  "license": "ISC"
+}
