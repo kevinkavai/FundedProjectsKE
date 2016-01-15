@@ -1,5 +1,5 @@
 import simplejson as json
-import getcoordinates
+import coordslist
 
 json_file = open('projects.json', 'r')
 
@@ -10,7 +10,7 @@ geojson = [{
 "type" : "Feature",
 "geometry" : {
         "type": "Point",
-        "coordinates": getcoordinates.replace_brackets(data["Location2_Secondary"]),
+        "coordinates": coordslist.get_coordinates(data["Location2_Secondary"]),
 },
 "properties": [
 {
@@ -20,7 +20,7 @@ geojson = [{
 }]
 } for data in json_data]
 
-output = open('projects_geojson.json', 'w')
+output = open('projects.geojson', 'w')
 json.dump(geojson, output)
 
 print geojson
