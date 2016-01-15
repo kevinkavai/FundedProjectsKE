@@ -50,16 +50,22 @@
 
  // Load markers from GeoJson file
 
- jQuery.ajax({
-   dataType: "json",
-   url: fileUrl,
-   success: function(geojson){
-     console.log(JSON.stringify(geojson));
-     L.mapbox.featureLayer(geojson).addTo(map);
-   }
- });
+ // jQuery.ajax({
+ //   dataType: "json",
+ //   url: fileUrl,
+ //   success: function(geojson){
+ //    //  console.log(JSON.stringify(geojson));
+ //     L.mapbox.featureLayer(geojson).addTo(map);
+ //   }
+ // });
 
-// var featureLayer = L.mapbox.featureLayer().loadURL('js/projects.geojson').addTo(map);
+var featureLayer = L.mapbox.featureLayer().loadURL(fileUrl).on('ready', function() {
+  featureLayer.eachLayer(function(layer){
+    var content = '<h5>'+layer.feature.properties.title+'<\/h5>'+'<h6>Description<\/h6>'+'<p>'+layer.feature.properties.description+'<\/p>'+
+    '<h6>Objectives<\/h6>'+'<p>'+layer.feature.properties.objectives+'<\/p>';
+    layer.bindPopup(content);
+  });
+}).addTo(map);
 
 </script>
 </body>

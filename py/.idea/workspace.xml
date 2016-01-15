@@ -13,7 +13,7 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/py$getcoordinates.coverage" NAME="getcoordinates Coverage Results" MODIFIED="1452851847233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/py$jsongeoconverter.coverage" NAME="jsongeoconverter Coverage Results" MODIFIED="1452852420234" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py$jsongeoconverter.coverage" NAME="jsongeoconverter Coverage Results" MODIFIED="1452854627989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -40,8 +40,8 @@
       <file leaf-file-name="jsongeoconverter.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jsongeoconverter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45425868" vertical-offset="208" max-vertical-offset="544">
-              <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.4229075" vertical-offset="64" max-vertical-offset="544">
+              <caret line="17" column="16" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -59,8 +59,8 @@
       <list>
         <option value="$PROJECT_DIR$/getcoordinates.py" />
         <option value="$PROJECT_DIR$/replacebrackets.py" />
-        <option value="$PROJECT_DIR$/jsongeoconverter.py" />
         <option value="$PROJECT_DIR$/coordslist.py" />
+        <option value="$PROJECT_DIR$/jsongeoconverter.py" />
       </list>
     </option>
   </component>
@@ -362,7 +362,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39939487" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.44783306" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22792937" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -446,8 +446,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jsongeoconverter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45425868" vertical-offset="208" max-vertical-offset="544">
-          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.4229075" vertical-offset="64" max-vertical-offset="544">
+          <caret line="17" column="16" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="16" />
           <folding />
         </state>
       </provider>

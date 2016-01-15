@@ -12,12 +12,12 @@ geojson = [{
         "type": "Point",
         "coordinates": coordslist.get_coordinates(data["Location2_Secondary"]),
 },
-"properties": [
+"properties":
 {
     "title" : data["Project Title"],
     "description" : data["Project Description"],
     "objectives" : data["Project Objectives"]
-}]
+}
 } for data in json_data]
 
 output = open('projects.geojson', 'w')
