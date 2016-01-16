@@ -7,6 +7,10 @@
 
 <script src="js/bundle.js"></script>
 
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
+
 <!-- Bootstrap things -->
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -32,8 +36,8 @@
           <div class="navbar-brand">Funded projects in Kenya</div>
         </div>
         <ul class="nav navbar-nav">
-          <li><a href="#">All projects</a></li>
-          <li><a href="#">Cluster projects</a></li>
+          <li><a id="all" href="#">All projects</a></li>
+          <li><a id="cluster" href="#">Cluster projects</a></li>
           <li><a href="#">Choropleth</a></li>
         </ul>
       </div>
@@ -59,13 +63,62 @@
  //   }
  // });
 
-var featureLayer = L.mapbox.featureLayer().loadURL(fileUrl).on('ready', function() {
-  featureLayer.eachLayer(function(layer){
-    var content = '<h5>'+layer.feature.properties.title+'<\/h5>'+'<h6>Description<\/h6>'+'<p>'+layer.feature.properties.description+'<\/p>'+
-    '<h6>Objectives<\/h6>'+'<p>'+layer.feature.properties.objectives+'<\/p>';
-    layer.bindPopup(content);
+ var featureLayer;
+ var group = new L.MarkerClusterGroup();
+
+ function showMarkers(){
+
+   // Show markers without clustering in case we click all after clustering or prevent overlapping layers
+   if(map.hasLayer(group)){
+     map.removeLayer(group);
+   }
+   else if(map.hasLayer(featureLayer)){
+     map.removeLayer(featureLayer);
+   }
+
+   featureLayer = L.mapbox.featureLayer().loadURL(fileUrl).on('ready', function(e) {
+
+    featureLayer.eachLayer(function(layer){
+      var content = '<h5>'+layer.feature.properties.title+'<\/h5>'+'<h6>Description<\/h6>'+'<p>'+layer.feature.properties.description+'<\/p>'+
+      '<h6>Objectives<\/h6>'+'<p>'+layer.feature.properties.objectives+'<\/p>';
+      layer.bindPopup(content);
+    });
+
   });
-}).addTo(map);
+
+  featureLayer.addTo(map);
+ }
+
+ function clusterMarkers(){
+
+   // Prevent overlapping layers
+   if(map.hasLayer(featureLayer)){
+     map.removeLayer(featureLayer);
+   }else if(map.hasLayer(group)){
+     map.removeLayer(group);
+   }
+
+   group = new L.MarkerClusterGroup();
+   var clusterLayer = L.mapbox.featureLayer().loadURL(fileUrl).on('ready', function(e) {
+        group.addLayer(clusterLayer);
+   });
+   group.addTo(map);
+ }
+
+jQuery(function(){
+  showMarkers();
+
+  jQuery('#cluster').click(function (e){
+    e.preventDefault();
+    clusterMarkers();
+  });
+
+  jQuery('#all').click(function (e){
+    e.preventDefault();
+    showMarkers();
+  });
+
+});
 
 </script>
 </body>
