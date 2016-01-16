@@ -46,9 +46,10 @@
 
 <script>
 
+  // Set up map
   L.mapbox.accessToken = 'pk.eyJ1IjoiYWxsYXkiLCJhIjoiY2lqOHh6MWp6MDAxcXV4bHhua3Btd203cCJ9.psDNCjiVMuoziPvI5U0n_g';
  	var map = L.mapbox.map('map', 'allay.olkh6mhg')
- 	.setView([0.703, 37.793], 6);
+ 	.setView([1.2000, 37.0000], 6);
 
   var fileUrl = 'js/projects.geojson';
 
@@ -87,6 +88,7 @@
   });
 
   featureLayer.addTo(map);
+
  }
 
  function clusterMarkers(){
@@ -103,6 +105,7 @@
         group.addLayer(clusterLayer);
    });
    group.addTo(map);
+
  }
 
 jQuery(function(){
