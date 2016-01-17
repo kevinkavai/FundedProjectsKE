@@ -1,128 +1,138 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset=utf-8 />
-<title>Donor and Government Funded Projects in KE</title>
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta charset=utf-8 />
+    <title>Donor and Government Funded Projects in KE</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src="js/bundle.js"></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
+    <!-- Bootstrap things -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous" />
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!--<script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>-->
+    <link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
 
-<script src="js/bundle.js"></script>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
 
-<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
-<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
-
-<!-- Bootstrap things -->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-<!--<script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>-->
-<link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
-<style>
-  body { margin:0; padding:0; }
-  #map { position:absolute; top:50px; bottom:0; right: 0; left: 0; width:100%; }
-</style>
+    #map {
+        position: absolute;
+        top: 50px;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+    }
+    </style>
 </head>
-<body>
 
+<body>
     <nav class="nav navbar-default navbar-static-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <div class="navbar-brand">Funded projects in Kenya</div>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-brand">Funded projects in Kenya</div>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a id="all" href="#">All projects</a></li>
+                <li><a id="cluster" href="#">Cluster projects</a></li>
+                <li><a id="choro" href="#">Choropleth</a></li>
+            </ul>
         </div>
-        <ul class="nav navbar-nav">
-          <li><a id="all" href="#">All projects</a></li>
-          <li><a id="cluster" href="#">Cluster projects</a></li>
-          <li><a href="#">Choropleth</a></li>
-        </ul>
-      </div>
     </nav>
     <div id='map'></div>
 
-<script>
+    <script>
+    //Set up map
+    L.mapbox.accessToken = 'pk.eyJ1IjoiYWxsYXkiLCJhIjoiY2lqOHh6MWp6MDAxcXV4bHhua3Btd203cCJ9.psDNCjiVMuoziPvI5U0n_g';
+    var map = L.mapbox.map('map', 'allay.olkh6mhg')
+        .setView([1.2000, 37.0000], 6);
 
-  // Set up map
-  L.mapbox.accessToken = 'pk.eyJ1IjoiYWxsYXkiLCJhIjoiY2lqOHh6MWp6MDAxcXV4bHhua3Btd203cCJ9.psDNCjiVMuoziPvI5U0n_g';
- 	var map = L.mapbox.map('map', 'allay.olkh6mhg')
- 	.setView([1.2000, 37.0000], 6);
+    var projectsUrl = 'js/projects.geojson';
+    var countiesUrl = 'js/counties.geojson';
 
-  var fileUrl = 'js/projects.geojson';
+    var featureLayer = getFeatureLayer();
+    var countiesLayer;
 
- // Load markers from GeoJson file
+    var layerGroup = new L.layerGroup().addTo(map);
+    var clustergroup = new L.MarkerClusterGroup();
 
- // jQuery.ajax({
- //   dataType: "json",
- //   url: fileUrl,
- //   success: function(geojson){
- //    //  console.log(JSON.stringify(geojson));
- //     L.mapbox.featureLayer(geojson).addTo(map);
- //   }
- // });
+    var hues = [
+        '#eff3ff',
+        '#bdd7e7',
+        '#6baed6',
+        '#3182bd',
+        '#08519c'
+    ];
 
- var featureLayer;
- var group = new L.MarkerClusterGroup();
+    var ranges = {};
 
- function showMarkers(){
+    function getFeatureLayer() {
 
-   // Show markers without clustering in case we click all after clustering or prevent overlapping layers
-   if(map.hasLayer(group)){
-     map.removeLayer(group);
-   }
-   else if(map.hasLayer(featureLayer)){
-     map.removeLayer(featureLayer);
-   }
+        return L.mapbox.featureLayer().loadURL(projectsUrl).on('ready', function(e) {
 
-   featureLayer = L.mapbox.featureLayer().loadURL(fileUrl).on('ready', function(e) {
+            featureLayer.eachLayer(function(layer) {
 
-    featureLayer.eachLayer(function(layer){
-      var content = '<h5>'+layer.feature.properties.title+'<\/h5>'+'<h6>Description<\/h6>'+'<p>'+layer.feature.properties.description+'<\/p>'+
-      '<h6>Objectives<\/h6>'+'<p>'+layer.feature.properties.objectives+'<\/p>';
-      layer.bindPopup(content);
+                var content = '<h5>' + layer.feature.properties.title + '<\/h5>' + '<h6>Description<\/h6>' + '<p>' + layer.feature.properties.description + '<\/p>' +
+                    '<h6>Objectives<\/h6>' + '<p>' + layer.feature.properties.objectives + '<\/p>';
+
+                layer.bindPopup(content);
+            });
+
+        });
+    }
+
+    function showMarkers() {
+
+        /* prevent overlapping layers especially if same link is clicked severally */
+        layerGroup.clearLayers();
+        featureLayer.addTo(layerGroup);
+
+    }
+
+    function clusterMarkers() {
+
+        layerGroup.clearLayers();
+        clustergroup.addLayer(featureLayer).addTo(layerGroup);
+
+    }
+
+    function showChoropleth() {
+
+        layerGroup.clearLayers();
+
+        countiesLayer = L.mapbox.featureLayer().loadURL(countiesUrl).addTo(layerGroup);
+    }
+
+    jQuery(function() {
+        showMarkers();
+
+        jQuery('#cluster').click(function(e) {
+            e.preventDefault();
+            clusterMarkers();
+        });
+
+        jQuery('#all').click(function(e) {
+            e.preventDefault();
+            showMarkers();
+        });
+
+        jQuery('#choro').click(function(e) {
+            e.preventDefault();
+            showChoropleth();
+        });
+
     });
-
-  });
-
-  featureLayer.addTo(map);
-
- }
-
- function clusterMarkers(){
-
-   // Prevent overlapping layers
-   if(map.hasLayer(featureLayer)){
-     map.removeLayer(featureLayer);
-   }else if(map.hasLayer(group)){
-     map.removeLayer(group);
-   }
-
-   group = new L.MarkerClusterGroup();
-   var clusterLayer = L.mapbox.featureLayer().loadURL(fileUrl).on('ready', function(e) {
-        group.addLayer(clusterLayer);
-   });
-   group.addTo(map);
-
- }
-
-jQuery(function(){
-  showMarkers();
-
-  jQuery('#cluster').click(function (e){
-    e.preventDefault();
-    clusterMarkers();
-  });
-
-  jQuery('#all').click(function (e){
-    e.preventDefault();
-    showMarkers();
-  });
-
-});
-
 </script>
 </body>
+
 </html>
