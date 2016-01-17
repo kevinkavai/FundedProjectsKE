@@ -28,4 +28,5 @@ I also tried loading the GeoJSON data when the map initially loads and reusing i
 2. [Mapbox API](https://www.mapbox.com/mapbox.js/api/v2.2.4/)
 3. [Mapbox Examples](https://www.mapbox.com/mapbox.js/example/v1.0.0/)
 
-
+## Data Visualization
+It'd be helpful if the data can be visualized as a heatmap of the status of projects so as to show which ones are stalling and which ones have been completed or are near completion in specific areas. 
