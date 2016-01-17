@@ -46,6 +46,8 @@
                 <li><a id="all" href="#">All projects</a></li>
                 <li><a id="cluster" href="#">Cluster projects</a></li>
                 <li><a id="choro" href="#">Choropleth</a></li>
+                <li><a id="filtered" href="#">Primary And Secondary Education In Poor Areas (2010 65 838)</a></li>
+
             </ul>
         </div>
     </nav>
@@ -95,6 +97,9 @@
 
         /* prevent overlapping layers especially if same link is clicked severally */
         layerGroup.clearLayers();
+        featureLayer.setFilter(function(f){
+          return true;
+        })
         featureLayer.addTo(layerGroup);
 
     }
@@ -113,6 +118,17 @@
         countiesLayer = L.mapbox.featureLayer().loadURL(countiesUrl).addTo(layerGroup);
     }
 
+    function filterEducation() {
+      
+      layerGroup.clearLayers();
+      featureLayer.setFilter(function(f){
+        return f.properties['title'] === 'Primary And Secondary Education In Poor Areas (2010 65 838)';
+      });
+
+      featureLayer.addTo(layerGroup);
+
+    }
+
     jQuery(function() {
         showMarkers();
 
@@ -129,6 +145,11 @@
         jQuery('#choro').click(function(e) {
             e.preventDefault();
             showChoropleth();
+        });
+
+        jQuery('#filtered').click(function(e){
+          e.preventDefault();
+          filterEducation();
         });
 
     });
